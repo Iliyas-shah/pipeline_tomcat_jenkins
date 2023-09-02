@@ -4,19 +4,25 @@ pipeline {
         maven 'Maven'
     }
     stages {
-        stage("clone code"){
-            steps{
-               git credentialsId: 'git_credentials', url: 'https://github.com/Iliyas-shah/pipeline_tomcat_jenkins.git'
-            }
-        }
+        // stage("clone code"){
+        //     steps{
+        //        git credentialsId: 'git_credentials', url: 'https://github.com/Iliyas-shah/pipeline_tomcat_jenkins.git'
+        //     }
+        // }
         stage("build code"){
             steps{
-              sh "mvn clean install"
+              sh "mvn clean package"
             }
+	    post{
+		    success{
+			    echo "archiving the artifacts"
+			    archiveArtifacts artifacts: '**/target/*.war'
+		    }
+	    }
         }
         stage('Code Deployment'){
 		steps{
-		deploy adapters: [tomcat10(credentialsId: 'TomcatCreds', path: '', url: 'http://localhost:9090/')], contextPath: 'counterwebapp', war: 'target/*.war'
+		deploy adapters: [tomcat10(credentialsId: 'TomcatCreds', path: '', url: 'http://localhost:9090/')], contextPath:null, war: '**/*.war'
 		}
 	    }
         // stage("deploy"){
