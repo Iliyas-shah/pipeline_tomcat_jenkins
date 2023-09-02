@@ -6,7 +6,7 @@ pipeline {
     stages {
         stage("clone code"){
             steps{
-               git credentialsId: 'git_credentials', url: 'https://github.com/ravdy/hello-world.git'
+               git credentialsId: 'git_credentials', url: 'https://github.com/Iliyas-shah/pipeline_tomcat_jenkins.git'
             }
         }
         stage("build code"){
