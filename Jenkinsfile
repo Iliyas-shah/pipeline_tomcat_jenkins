@@ -1,3 +1,5 @@
+// cd C:\Users\iliyas\my-app
+// java -cp target/my-app-1.0-SNAPSHOT.jar com.mycompany.app.App
 // pipeline {
 //     agent any
 //     tools{
