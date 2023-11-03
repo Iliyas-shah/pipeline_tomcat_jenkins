@@ -57,6 +57,7 @@
 //         }
 //     }
 // }
+// <user username="tomcat" password="password" roles="manager-gui, admin-gui, manager-script"/>
 pipeline{
     agent any
     tools{
